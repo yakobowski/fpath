@@ -20,7 +20,7 @@ let err_invalid_ext s = strf "%a: invalid extension" String.dump s
 
 (* A few useful constants *)
 
-let windows = Sys.os_type = "Win32"
+let windows = true
 let dir_sep_char = if windows then '\\' else '/'
 let dir_sep = String.of_char dir_sep_char
 let dir_sep_sub = String.sub dir_sep
@@ -779,3 +779,17 @@ type 'a map = 'a Map.t
    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
   ---------------------------------------------------------------------------*)
+let wrap (x : string) =
+  Format.printf "%b@." windows;  
+  match of_string x with
+  | Ok p -> if is_rel p  then p else raise (Invalid_argument ("nok " ^ x))
+  | _ -> raise (Invalid_argument x)
+
+let _ = wrap "finalizers.ads"
+(*
+let wrap (x : string) =
+  match Fpath.of_string x with
+  | Ok p -> if Fpath.is_rel p  then p else raise (Invalid_argument ("nok " ^ x))
+  | _ -> raise (Invalid_argument x)
+
+*)
