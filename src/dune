@@ -1,0 +1,10 @@
+(executable
+ (name fpath)
+ (public_name fpath)
+ (flags (:standard))
+ (libraries astring)
+)
+
+(env
+   (dev
+      (flags (:standard -w -27 -w -6 -w -39 -w -32)))) ; Disable Non_closed_record_pattern.

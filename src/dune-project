@@ -1,0 +1,7 @@
+(lang dune 2.7)
+
+(generate_opam_files true)
+
+(package
+ (name win-fpath)
+ (synopsis "Windows Fpath"))
